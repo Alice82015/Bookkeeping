@@ -5,37 +5,24 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:todolist"
              mc:Ignorable="d" 
-             d:DesignHeight="500" d:DesignWidth="300">
-    <Grid Background="White" Height="30">
+             d:DesignHeight="600" d:DesignWidth="400">
+    <Grid Background="#FFC9FFC9" Height="50" HorizontalAlignment="Right" Width="400">
         <!-- 定義格子 -->
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="50"></ColumnDefinition>
+            <ColumnDefinition Width="140"></ColumnDefinition>
             <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition Width="100"></ColumnDefinition>
         </Grid.ColumnDefinitions>
 
-        <!-- 勾選框 -->
-        <Grid Grid.Column="0" x:Name="CheckBox" Background="PaleGreen" MouseDown="CheckBox_MouseDown">
+        <!-- 日期輸入框 -->
+        <TextBox x:Name="ItemNameTb1" Grid.Column="0" VerticalContentAlignment="Center" BorderThickness="0" Margin="60 0 0 0" Background="#FFC9FFC9" Foreground="Chocolate" FontWeight="Bold" FontSize="20">1/1</TextBox>
 
-            <!-- 方框 -->
-            <Rectangle Width="20" Height="20" Stroke="Gray" StrokeThickness="2"></Rectangle>
+        <!-- 事物輸入框 -->
+        <TextBox x:Name="ItemNameTb" Grid.Column="1" VerticalContentAlignment="Center" BorderThickness="0" Background="#FFC9FFC9" Foreground="LightSlateGray" FontWeight="Bold" FontSize="20">New</TextBox>
 
-            <!-- 打勾 -->
-            <Canvas x:Name="CheckMark">
-                <Rectangle Width="7" Height="3" Fill="Green" Canvas.Left="21" Canvas.Top="13">
-                    <Rectangle.RenderTransform>
-                        <RotateTransform Angle="45"></RotateTransform>
-                    </Rectangle.RenderTransform>
-                </Rectangle>
-                <Rectangle Width="9" Height="3" Fill="Green" Canvas.Left="23" Canvas.Top="17">
-                    <Rectangle.RenderTransform>
-                        <RotateTransform Angle="-45"></RotateTransform>
-                    </Rectangle.RenderTransform>
-                </Rectangle>
-            </Canvas>
-        </Grid>
-
-        <!-- 輸入框 -->
-        <TextBox x:Name="ItemNameTb" Grid.Column="1" VerticalContentAlignment="Center" BorderThickness="0" Background="PaleGreen">New Task</TextBox>
+        <!-- 支出輸入框 -->
+        <TextBox x:Name="ItemNameTb3" Grid.Column="2" VerticalContentAlignment="Center" BorderThickness="0" Margin="30 0 0 0" Background="#FFC9FFC9" Foreground="DarkGreen" FontWeight="Bold" FontSize="22">0</TextBox>
+        
     </Grid>
     
 </UserControl>

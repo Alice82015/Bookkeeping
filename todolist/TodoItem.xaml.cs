@@ -36,39 +36,11 @@ namespace todolist
             }
         }
 
-        // 封裝屬性：是否打勾
-        public bool IsChecked
-        {
-            get
-            {
-                if (CheckMark.Visibility == Visibility.Collapsed)
-                    return false;
-                else
-                    return true;
-            }
-
-            set
-            {
-                if (value)
-                    CheckMark.Visibility = Visibility.Visible;
-                else
-                    CheckMark.Visibility = Visibility.Collapsed;
-            }
-        }
-
         public TodoItem()
         {
             InitializeComponent();
         }
 
-        // 勾選框點選事件
-        private void CheckBox_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-            if (CheckMark.Visibility == Visibility.Collapsed)
-                CheckMark.Visibility = Visibility.Visible;
-            else
-                CheckMark.Visibility = Visibility.Collapsed;
-        }
         // 項目名稱鍵盤按下事件
         private void ItemNameTb_PreviewKeyDown(object sender, KeyEventArgs e)
         {

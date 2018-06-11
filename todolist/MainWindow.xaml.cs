@@ -30,8 +30,7 @@ namespace todolist
         {
             // 產生 TodoItem
             TodoItem item = new TodoItem();
-            item.IsChecked = false;
-            item.ItemName = "新工作";
+            item.ItemName = "New";
             item.DeleteItem += new EventHandler(DeleteItem);
 
             // 放到清單中
@@ -49,24 +48,6 @@ namespace todolist
         {
             // 新增一個串列裝每個項目轉成的文字
             List<string> datas = new List<string>();
-
-            // 轉換每一個項目
-            foreach (TodoItem item in TotoItemList.Children)
-            {
-                string line = "";
-
-                // 加入是否勾選的符號
-                if (item.IsChecked)
-                    line += "+";
-                else
-                    line += "-";
-
-                // 加上|符號和項目文字
-                line += "|" + item.ItemName;
-
-                // 加入串列中
-                datas.Add(line);
-            }
 
             // 存檔
             System.IO.File.WriteAllLines(@"C:\temp\data.txt", datas);
@@ -88,12 +69,6 @@ namespace todolist
                 TodoItem item = new TodoItem();
                 item.ItemName = parts[1];
                 item.DeleteItem += new EventHandler(DeleteItem);
-
-                // 是否勾選
-                if (parts[0] == "+")
-                    item.IsChecked = true;
-                else
-                    item.IsChecked = false;
 
                 // 放到清單中
                 TotoItemList.Children.Add(item);

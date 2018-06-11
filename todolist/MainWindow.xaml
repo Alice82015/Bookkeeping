@@ -5,28 +5,31 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:todolist"
         mc:Ignorable="d"
-        Title="MainWindow" Height="500" Width="300"
-        Closed="Window_Closed" Loaded="Window_Loaded">
+        Title="MainWindow" Height="600" Width="400"
+        Closed="Window_Closed" Loaded="Window_Loaded" Background="#FFC9FFC9">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="30"></RowDefinition>
             <RowDefinition></RowDefinition>
-            <RowDefinition Height="50"></RowDefinition>
+            <RowDefinition Height="80"></RowDefinition>
         </Grid.RowDefinitions>
 
-        
+
         <!-- 項目清單 -->
         <ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Row="1">
             <StackPanel x:Name="TotoItemList"></StackPanel>
         </ScrollViewer>
 
-        <!-- To-dos -->
-        <ScrollViewer Grid.Row="2" VerticalScrollBarVisibility="Auto">
-            <StackPanel Grid.Row="1">
-                <StackPanel x:Name="TodoStack"></StackPanel>
-                <Button x:Name="AddBtn" Click="AddBtn_Click">Add</Button>
+
+        <StackPanel Orientation="Horizontal"  Grid.Row="2" Background="#FFFFD1D9">
+            <StackPanel x:Name="TodoStack"></StackPanel>
+            <Button Margin="30 20 0 20" x:Name="AddBtn" Click="AddBtn_Click" FontSize="32" Background="#FFFFD1D9" Foreground="Tomato" BorderBrush="Transparent">+</Button>
+            <StackPanel Orientation="Vertical">
+                <TextBlock Width="70" Margin="230 5 0 0" Background="#FFFFD1D9" Foreground="Tomato" FontSize="17" FontWeight="Bold">總支出</TextBlock>
+                <TextBlock Margin="0 0 30 0" HorizontalAlignment="Right" Background="#FFFFD1D9" Foreground="SaddleBrown" FontSize="30" FontWeight="Bold">0</TextBlock>
             </StackPanel>
-        </ScrollViewer>
+        </StackPanel>
+        
         
     </Grid>
 </Window>
