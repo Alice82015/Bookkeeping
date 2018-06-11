@@ -20,18 +20,63 @@ namespace todolist
     /// </summary>
     public partial class TodoItem : UserControl
     {
+        // 自訂刪除事件
+        public event EventHandler DeleteItem;
+
+        // 封裝屬性：事件名稱
+        public string ItemName
+        {
+            get
+            {
+                return ItemNameTb.Text;
+            }
+            set
+            {
+                ItemNameTb.Text = value;
+            }
+        }
+
+        // 封裝屬性：是否打勾
+        public bool IsChecked
+        {
+            get
+            {
+                if (CheckMark.Visibility == Visibility.Collapsed)
+                    return false;
+                else
+                    return true;
+            }
+
+            set
+            {
+                if (value)
+                    CheckMark.Visibility = Visibility.Visible;
+                else
+                    CheckMark.Visibility = Visibility.Collapsed;
+            }
+        }
+
         public TodoItem()
         {
             InitializeComponent();
         }
-        // 自訂方法 : 取得輸入文字
-        public string GetTaskName()
-        {
-            return TaskName.Text;
-        }
-        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
 
+        // 勾選框點選事件
+        private void CheckBox_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (CheckMark.Visibility == Visibility.Collapsed)
+                CheckMark.Visibility = Visibility.Visible;
+            else
+                CheckMark.Visibility = Visibility.Collapsed;
+        }
+        // 項目名稱鍵盤按下事件
+        private void ItemNameTb_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            // 任務空白，而且按下 Backspace 鍵時，引發 DeleteItem 事件
+            if (ItemNameTb.Text == "" && e.Key == Key.Back)
+            {
+                DeleteItem(this, null);
+            }
         }
     }
 }

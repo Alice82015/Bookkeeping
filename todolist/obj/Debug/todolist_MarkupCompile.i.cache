@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\git\todolist\todolist\obj\Debug\
+D:\Sourcetree\git\Todolist\todolist\obj\Debug\
 todolist
 none
 false
 DEBUG;TRACE
-C:\git\todolist\todolist\App.xaml
+D:\Sourcetree\git\Todolist\todolist\App.xaml
 32223960
 
-11564013866
+111955903166
 13738642453
 MainWindow.xaml;TodoItem.xaml;UserControl1.xaml;
 
-False
+True
 

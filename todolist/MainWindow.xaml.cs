@@ -25,29 +25,79 @@ namespace todolist
             InitializeComponent();
         }
 
+        // 新增按鈕按下事件
         private void AddBtn_Click(object sender, RoutedEventArgs e)
         {
-            // 產生一個方塊
+            // 產生 TodoItem
             TodoItem item = new TodoItem();
+            item.IsChecked = false;
+            item.ItemName = "新工作";
+            item.DeleteItem += new EventHandler(DeleteItem);
 
-            // 放到 Todostack
-            TodoStack.Children.Add(item);
+            // 放到清單中
+            TotoItemList.Children.Add(item);
         }
 
-        private void TextBlock_MouseDown(object sender, MouseButtonEventArgs e)
+        // 刪除事件
+        private void DeleteItem(object sender, EventArgs e)
         {
-            // 產生一個儲存每個 list 文字的 list
-            List<string> all = new List<string>();
+            TotoItemList.Children.Remove((TodoItem)sender);
+        }
 
-            // 取得每一個 item 的文字
-            foreach ( TodoItem item in TodoStack.Children )
+        // 關閉視窗事件
+        private void Window_Closed(object sender, EventArgs e)
+        {
+            // 新增一個串列裝每個項目轉成的文字
+            List<string> datas = new List<string>();
+
+            // 轉換每一個項目
+            foreach (TodoItem item in TotoItemList.Children)
             {
-                all.Add(item.GetTaskName());
+                string line = "";
+
+                // 加入是否勾選的符號
+                if (item.IsChecked)
+                    line += "+";
+                else
+                    line += "-";
+
+                // 加上|符號和項目文字
+                line += "|" + item.ItemName;
+
+                // 加入串列中
+                datas.Add(line);
             }
 
-            // 寫入檔案
-            System.IO.File.WriteAllLines(@"c:\tododate.txt",all);
-
+            // 存檔
+            System.IO.File.WriteAllLines(@"C:\temp\data.txt", datas);
         }
+
+        // 開啟視窗事件
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            // 開檔
+            string[] lines = System.IO.File.ReadAllLines(@"C:\temp\data.txt");
+
+            // 分析每一行
+            foreach (string line in lines)
+            {
+                // 用 | 符號拆開
+                string[] parts = line.Split('|');
+
+                // 建立 TodoItem
+                TodoItem item = new TodoItem();
+                item.ItemName = parts[1];
+                item.DeleteItem += new EventHandler(DeleteItem);
+
+                // 是否勾選
+                if (parts[0] == "+")
+                    item.IsChecked = true;
+                else
+                    item.IsChecked = false;
+
+                // 放到清單中
+                TotoItemList.Children.Add(item);
+            }
+            }
     }
 }

@@ -5,12 +5,37 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:todolist"
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
-    <Grid Width="300" Height="50" Background="LightPink">
-        <StackPanel Orientation="Horizontal">
-        <Rectangle Width="20" Height="20" Margin="10 0" Stroke="Black" StrokeThickness="2"></Rectangle>
-            <TextBox Width="200" VerticalAlignment="Center" Background="Transparent" BorderThickness="0" x:Name="TaskName" TextChanged="TextBox_TextChanged">new task</TextBox>
-         </StackPanel>
-       
+             d:DesignHeight="500" d:DesignWidth="300">
+    <Grid Background="White" Height="30">
+        <!-- 定義格子 -->
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="50"></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+        <!-- 勾選框 -->
+        <Grid Grid.Column="0" x:Name="CheckBox" Background="PaleGreen" MouseDown="CheckBox_MouseDown">
+
+            <!-- 方框 -->
+            <Rectangle Width="20" Height="20" Stroke="Gray" StrokeThickness="2"></Rectangle>
+
+            <!-- 打勾 -->
+            <Canvas x:Name="CheckMark">
+                <Rectangle Width="7" Height="3" Fill="Green" Canvas.Left="21" Canvas.Top="13">
+                    <Rectangle.RenderTransform>
+                        <RotateTransform Angle="45"></RotateTransform>
+                    </Rectangle.RenderTransform>
+                </Rectangle>
+                <Rectangle Width="9" Height="3" Fill="Green" Canvas.Left="23" Canvas.Top="17">
+                    <Rectangle.RenderTransform>
+                        <RotateTransform Angle="-45"></RotateTransform>
+                    </Rectangle.RenderTransform>
+                </Rectangle>
+            </Canvas>
+        </Grid>
+
+        <!-- 輸入框 -->
+        <TextBox x:Name="ItemNameTb" Grid.Column="1" VerticalContentAlignment="Center" BorderThickness="0" Background="PaleGreen">New Task</TextBox>
     </Grid>
+    
 </UserControl>

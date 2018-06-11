@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:todolist"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="305">
+        Title="MainWindow" Height="500" Width="300"
+        Closed="Window_Closed" Loaded="Window_Loaded">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="30"></RowDefinition>
@@ -13,24 +14,19 @@
             <RowDefinition Height="50"></RowDefinition>
         </Grid.RowDefinitions>
 
-        <TextBlock VerticalAlignment="Center" Margin="10 0">2018/5/17</TextBlock>
+        
+        <!-- 項目清單 -->
+        <ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Row="1">
+            <StackPanel x:Name="TotoItemList"></StackPanel>
+        </ScrollViewer>
 
         <!-- To-dos -->
-        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
+        <ScrollViewer Grid.Row="2" VerticalScrollBarVisibility="Auto">
             <StackPanel Grid.Row="1">
                 <StackPanel x:Name="TodoStack"></StackPanel>
                 <Button x:Name="AddBtn" Click="AddBtn_Click">Add</Button>
             </StackPanel>
         </ScrollViewer>
-
-        <StackPanel Grid.Row="2" Orientation="Horizontal">
-            <!-- 自定按鈕1 -->
-            <Grid>
-                <Rectangle Width="150" Height="50" Fill="Black" MouseDown="TextBlock_MouseDown"></Rectangle>
-                <TextBlock Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center">Save</TextBlock>
-            </Grid>
-            <!-- 預設按鈕 -->
-            <Button Width="150">Open</Button>
-        </StackPanel>
+        
     </Grid>
 </Window>
