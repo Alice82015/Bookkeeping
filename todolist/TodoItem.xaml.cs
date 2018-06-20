@@ -20,8 +20,23 @@ namespace todolist
     /// </summary>
     public partial class TodoItem : UserControl
     {
+
+
         // 自訂刪除事件
         public event EventHandler DeleteItem;
+
+        // 封裝屬性：日期
+        public string ItemName1
+        {
+            get
+            {
+                return ItemNameTb1.Text;
+            }
+            set
+            {
+                ItemNameTb1.Text = value;
+            }
+        }
 
         // 封裝屬性：事件名稱
         public string ItemName
@@ -33,6 +48,19 @@ namespace todolist
             set
             {
                 ItemNameTb.Text = value;
+            }
+        }
+
+        // 封裝屬性：支出
+        public string ItemName3
+        {
+            get
+            {
+                return ItemNameTb3.Text;
+            }
+            set
+            {
+                ItemNameTb3.Text = value;
             }
         }
 

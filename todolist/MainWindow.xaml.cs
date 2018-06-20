@@ -30,7 +30,6 @@ namespace todolist
         {
             // 產生 TodoItem
             TodoItem item = new TodoItem();
-            item.ItemName = "New";
             item.DeleteItem += new EventHandler(DeleteItem);
 
             // 放到清單中
@@ -49,8 +48,20 @@ namespace todolist
             // 新增一個串列裝每個項目轉成的文字
             List<string> datas = new List<string>();
 
-            // 存檔
-            System.IO.File.WriteAllLines(@"C:\temp\data.txt", datas);
+            // 轉換每一個項目
+            foreach (TodoItem item in TotoItemList.Children)
+            {
+                string line = "";
+
+                // 加上|符號和項目文字
+                line += item.ItemName1 + "|" + item.ItemName + "|" + item.ItemName3;
+
+                // 加入串列中
+                datas.Add(line);
+            }
+
+                // 存檔
+                System.IO.File.WriteAllLines(@"C:\temp\data.txt", datas);
         }
 
         // 開啟視窗事件
@@ -67,12 +78,17 @@ namespace todolist
 
                 // 建立 TodoItem
                 TodoItem item = new TodoItem();
+                item.ItemName1 = parts[0];
                 item.ItemName = parts[1];
+                item.ItemName3 = parts[2];
+
                 item.DeleteItem += new EventHandler(DeleteItem);
+
+
 
                 // 放到清單中
                 TotoItemList.Children.Add(item);
             }
-            }
+        }
     }
 }
